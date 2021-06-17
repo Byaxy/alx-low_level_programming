@@ -2,8 +2,9 @@
 #include <unistd.h>
 
 /**
- *main - function to display text with write 
- *Return: 1
+ *main - function to display text with write
+ * 
+ *Return: Always 0 (Success)
  */
 
 int main(void)
