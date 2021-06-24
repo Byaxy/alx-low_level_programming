@@ -17,9 +17,11 @@ void print_number(int n)
 		y = -n;
 	}
 
-	if (y / 10)
+	y = y / 10;
+
+	if (y != 0)
 	{
-		print_number(y / 10);
+		print_number(y);
 	}
 
 	_putchar('0' + (y % 10));
