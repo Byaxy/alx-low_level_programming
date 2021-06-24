@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * print_suare - prints square of #
+ * print_square - prints square of #
  * @size: size of the square
  * Return: none
  */
