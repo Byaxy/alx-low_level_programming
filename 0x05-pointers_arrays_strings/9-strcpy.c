@@ -1,7 +1,10 @@
 #include "holberton.h"
 
 /**
- *
+ * _strcpy - copy string
+ * @dest: string destination
+ * @src: string to be copied
+ * Return: copied string in destination
  */
 
 char *_strcpy(char *dest, char *src)
