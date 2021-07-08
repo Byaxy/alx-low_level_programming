@@ -2,7 +2,8 @@
 #define NULL 0
 
 /**
- * _strpbrk - return pointer to the first byte in s that matches that in accept.
+ * _strpbrk - return pointer to the first byte in s
+ * that matches that in accept.
  * @s: string to search
  * @accept: string tocompare
  * Return: pointer to index of s at first match
