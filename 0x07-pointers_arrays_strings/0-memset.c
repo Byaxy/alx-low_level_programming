@@ -8,7 +8,7 @@
  * Return: memory area
  */
 
-char *_memset(char *s, char b, unsugned int n)
+char *_memset(char *s, char b, unsigned int n)
 {
 	int size = n;
 
