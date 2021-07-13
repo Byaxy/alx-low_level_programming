@@ -53,7 +53,7 @@ char *argstostr(int ac, char **av)
 		{
 			str[k++] = av[i][j];
 		}
-		str[k++] = '\0';
+		str[k++] = '\n';
 	}
 
 	return (str);
