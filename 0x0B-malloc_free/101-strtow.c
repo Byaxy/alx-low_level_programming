@@ -56,11 +56,13 @@ char **strtow(char *str)
 			words[wrdcnt] = (char *)malloc(j * sizeof(char));
 			j--;
 			if (words[wrdcnt] == NULL)
+			{
 				for (k = 0; k < wrdcnt; k++)
 					free(words[k]);
 				free(words[num - 1]);
 				free(words);
 				return (NULL);
+			}
 			for (l = 0; l < j; l++)
 				words[wrdcnt][l] = str[i + l];
 			words[wrdcnt][l] = '\0';
