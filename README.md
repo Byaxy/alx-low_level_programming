@@ -1,1 +1,1 @@
-**Foundations** of low level programming in the *C programming laanguage.*
+**Foundations** of low level programming in the *C programming language.*
