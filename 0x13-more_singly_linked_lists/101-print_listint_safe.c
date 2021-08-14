@@ -1,59 +1,97 @@
 #include "lists.h"
 
 /**
- * _r - reallocates memory for an array of pointers
- * to the nodes in a linked list
- * @list: the old list to append
- * @size: size of the new list (always one more than the old list)
- * @new: new node to add to the list
- *
- * Return: pointer to the new list
+ * count_nodes_till_loop - count nodes to know now many unique nodes to print
+ * @head: pointer to head pointer of linked list
+ * Return: number of unique nodes in list before a loop
  */
-const listint_t **_r(const listint_t **list, size_t size, const listint_t *new)
+int count_nodes_till_loop(const listint_t *head)
 {
-	const listint_t **newlist;
-	size_t i;
+	int count = 0;
+	const listint_t *turtle, *hare;
 
-	newlist = malloc(size * sizeof(listint_t *));
-	if (newlist == NULL)
+	turtle = hare = head;
+
+	while (turtle != NULL && hare != NULL)
 	{
-		free(list);
-		exit(98);
+		turtle = turtle->next;
+		hare = hare->next->next;
+		count++;
+
+		if (turtle == hare)
+		{
+			turtle = head;
+			while (turtle != hare)
+			{
+				turtle = turtle->next;
+				hare = hare->next;
+				count++;
+			}
+			return (count);
+		}
 	}
-	for (i = 0; i < size - 1; i++)
-		newlist[i] = list[i];
-	newlist[i] = new;
-	free(list);
-	return (newlist);
+	return (0);
 }
 
 /**
- * print_listint_safe - prints a listint_t linked list.
- * @head: pointer to the start of the list
- *
- * Return: the number of nodes in the list
+ * loop - find if there's a loop in linked list
+ * @head: pointer to head pointer of linked list
+ * Return: 0 if no loop, 1 if loop
+ */
+int loop(const listint_t *head)
+{
+	const listint_t *turtle, *hare;
+
+	turtle = hare = head;
+
+	while (turtle != NULL && hare != NULL)
+	{
+		turtle = turtle->next;
+		hare = hare->next->next;
+
+		if (turtle == hare)
+			return (1);
+	}
+	return (0);
+}
+
+/**
+ * print_listint_safe - prints list with addresses
+ * @head: pointer to head pointer of linked list
+ * Return: number of nodes in list, exit(98) if failed
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t i, num = 0;
-	const listint_t **list = NULL;
+	int count = 0;
+	int loop_found;
+	size_t num_nodes = 0;
+	const listint_t *tmp;
 
-	while (head != NULL)
+	if (head == NULL)
+		exit(98);
+
+	loop_found = loop(head);
+
+	if (loop_found == 1) /* print upto last node before loop if loop */
 	{
-		for (i = 0; i < num; i++)
+		count = count_nodes_till_loop(head);
+		for (loop_found = 0; loop_found < count; loop_found++)
 		{
-			if (head == list[i])
-			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
-				free(list);
-				return (num);
-			}
+			printf("[%p] %d\n", (void *)tmp, tmp->n);
+			num_nodes += 1;
+			tmp = tmp->next;
 		}
-		num++;
-		list = _r(list, num, head);
-		printf("[%p] %d\n", (void *)head, head->n);
-		head = head->next;
 	}
-	free(list);
-	return (num);
+	else if (loop_found == 0) /* print regularly upto NULL if no loop */
+	{
+		tmp = head;
+		while (tmp != NULL)
+		{
+			printf("[%p] %d\n", (void *)tmp, tmp->n);
+			num_nodes += 1;
+			tmp = tmp->next;
+		}
+	}
+
+	return (num_nodes);
 }
