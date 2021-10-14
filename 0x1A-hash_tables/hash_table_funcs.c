@@ -11,9 +11,6 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	unsigned long int idx;
 	shash_node_t *tmp;
 
-	/* find index in hash table where key is */
-	/* look through linked list to find matching key for value */
-
 	if (!ht || !key)
 		return (NULL);
 	idx = key_index((const unsigned char *)key, ht->size);
@@ -28,7 +25,8 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 }
 
 /**
- * shash_table_print - print key/values of hash table in ascending order
+ * shash_table_print - print key/values of hash table in ascending
+ * order
  * @ht: hash table
  */
 void shash_table_print(const shash_table_t *ht)
@@ -51,7 +49,8 @@ void shash_table_print(const shash_table_t *ht)
 }
 
 /**
- * shash_table_print_rev - print key/values of sorted hashtable in reverse order
+ * shash_table_print_rev - print key/values of sorted hashtable in
+ * reverse order
  * @ht: hash table
  */
 void shash_table_print_rev(const shash_table_t *ht)
