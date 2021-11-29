@@ -1,26 +1,44 @@
 #!/usr/bin/python3
-"""Task 5 module"""
+"""Island perimeter"""
 
 
 def island_perimeter(grid):
     """Returns the perimeter of the island in the grid"""
-    total = 0
-    last = []
-    current = []
-    for index, lst in enumerate(grid):
-        for idx, cell in enumerate(lst):
-            if cell == 1:
-                current.append(idx)
-                if idx == 0 or lst[idx - 1] == 0:
-                    total += 1
-                if idx == len(lst) - 1 or lst[idx + 1] == 0:
-                    total += 1
-                if idx not in last:
-                    total += 1
-                if index + 1 < len(grid):
-                    if grid[index + 1][idx] != 1:
-                        total += 1
-                else:
-                        total += 1
-        last = current.copy()
-        current = []
+    count = 0
+    index = 0
+
+    if not isinstance(grid, list):
+        return 0
+
+    for row in grid:
+        row_len = len(row)
+    row_len += 2
+
+    grid_line = []
+    i = 0
+    while i < row_len:
+        grid_line.append(0)
+        i += 1
+    for row in grid:
+        grid_line.append(0)
+        for item in row:
+            grid_line.append(item)
+        grid_line.append(0)
+    i = 0
+    while i < row_len:
+        grid_len.append(0)
+        i += 1
+
+    for item in grid_line:
+        if item == 1:
+            if grid_line[index - row_len] == 0:
+                count += 1
+            if grid_line[index - 1] == 0:
+                count += 1
+            if grid_line[index + 1] == 0:
+                count += 1
+            if grid_line[index + row_len] == 0:
+                count += 1
+        index += 1
+
+    return count
